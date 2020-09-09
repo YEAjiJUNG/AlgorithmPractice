@@ -1,27 +1,45 @@
 #include <string>
 #include <vector>
+#include <map>
 
 using namespace std;
 
 
 string solution(vector<string> participant, vector<string> completion)
 {
-    int i = 0;
-    while(participant.size()>1)
+    string answer;
+    map<string, int> participate_to_number;
+    map<string, int> complete_to_number;
+    for (int i = 0; i < participant.size(); i++)
     {
-        for(int j = 0; j <completion.size(); j++)
+        if (participate_to_number.find(participant[i]) == participate_to_number.end())
         {
-            if(participant[i] == completion[j])
-            {
-                participant.erase(participant.begin() + i);
-                completion.erase(completion.begin() + j);
-                i = -1;
-                break;
-            }
+            participate_to_number[participant[i]] = 0;
+            complete_to_number[participant[i]] = 0;
         }
-        i++;
+        participate_to_number[participant[i]] += 1;
     }
-    string answer = participant[0];
+
+    for (int i = 0;  i < completion.size(); i++) 
+    {
+        complete_to_number[completion[i]] += 1;
+    }
+
+    map<string, int>::iterator it = participate_to_number.begin();
+    // it => 3번 주소 pair<string, int>
+    // it => 3번 주소 int
+    for (; it != participate_to_number.end(); it++)
+    {
+        string participant_name = it->first;
+        int participant_num = it->second;
+        int completion_num = complete_to_number[participant_name];
+        if(participant_num != completion_num)
+        {
+            answer = participant_name;
+            break;
+        } 
+    }
+
     return answer;
     
 }
