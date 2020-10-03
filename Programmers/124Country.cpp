@@ -13,7 +13,7 @@ string solution(int n) {
         n /= 3;
         if (r == 0) {
             answer = arr[2] + answer;
-            n—;
+            n--;
         } else {
             answer = arr[r-1] + answer;
         }
