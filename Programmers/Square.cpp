@@ -20,13 +20,13 @@ long long solution(int w, int h) {
     int gcd = GCD(w, h);
 
     if(gcd == 1){
-        sq = w + h - 1;
+        sq = W + H - 1;
     }
     else if(gcd >= 2){
-        sq = w + h - gcd;
+        sq = W + H - gcd;
     }
 
     answer = W * H - sq;
-    
+
     return answer;
 }
