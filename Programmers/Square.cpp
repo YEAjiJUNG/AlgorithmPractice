@@ -2,28 +2,30 @@
 
 using namespace std;
 
+int GCD(int a, int b){
+   if(b == 0){
+       return a;
+   }
+   else{
+       return GCD(b, a%b);
+   }
+}
+
 long long solution(int w, int h) {
     long long answer = 1;
-    long long n = max(w, h);
-    long long sq = 0;
     long long W = w;
     long long H = h;
+    long long sq = 0;
 
-    for(int i = 1; i <= n; i++){
-        int GCF =0;
-        if(w % i == 0){
-            if(h % i == 0){
-                GCF = i;
-            }
-        }
-        if(GCF >= 2){
-            sq = w + h - GCF; 
-        }
-        else if(GCF == 1){
-            sq = w + h - 1;
-        }
+    int gcd = GCD(w, h);
 
+    if(gcd == 1){
+        sq = w + h - 1;
     }
+    else if(gcd >= 2){
+        sq = w + h - gcd;
+    }
+
     answer = W * H - sq;
     
     return answer;
