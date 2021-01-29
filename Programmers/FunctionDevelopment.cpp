@@ -20,6 +20,7 @@ vector<int> solution(vector<int> progresses, vector<int> speeds) {
         }
     }
 
+
     int comp = -1;
     while(!day.empty()){
         int current = day.front();    
