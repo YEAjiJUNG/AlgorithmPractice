@@ -10,14 +10,15 @@ vector<int> solution(vector<int> prices) {
         for(int j = i+1; j < prices.size(); j++){
             if(prices[i] <= prices[j]){
                 if(j == prices.size()-1){
-                    answer.push_back(j - i);
+                    answer.push_back(j-i);
                 }
-                else continue;
+                else{
+                    continue;
+                }
             }
             else{
-                answer.push_back(j - i);
+                answer.push_back(j-i);
                 break;
-                
             }
         }
     }
